@@ -10,7 +10,9 @@ import (
 	"os"
 	"strings"
 	"time"
+
 )
+
 
 type BiliFollowersBean struct {
 	Data BiliData
@@ -141,7 +143,7 @@ func runWeiboSpider() map[string]WeiboFollowersBean {
 //保存文件
 func saveExcel(map1 map[string]BiliFollowersBean, map2 map[string]WeiboFollowersBean) (error, string) {
 	//获取Excel
-	xlFile, err := xlsx.OpenFile("./id.xlsx")
+	xlFile, err := xlsx.OpenFile("ids.xlsx")
 	if err != nil {
 		fmt.Println("打开Excel失败")
 	}
@@ -208,7 +210,7 @@ func saveExcel(map1 map[string]BiliFollowersBean, map2 map[string]WeiboFollowers
 func saveBiliExcel(upMap map[string]BiliFollowersBean) {
 	fmt.Println("开始进行保存Excel数据----->")
 	//获取Excel
-	xlFile, err := xlsx.OpenFile("./id.xlsx")
+	xlFile, err := xlsx.OpenFile("id.xlsx")
 	if err != nil {
 		fmt.Println("打开Excel失败")
 	}
@@ -256,7 +258,7 @@ func saveBiliExcel(upMap map[string]BiliFollowersBean) {
 func saveWeiboExcel(upMap map[string]WeiboFollowersBean) {
 	fmt.Println("开始进行保存Excel数据----->")
 	//获取Excel
-	xlFile, err := xlsx.OpenFile("./id.xlsx")
+	xlFile, err := xlsx.OpenFile("ids.xlsx")
 	if err != nil {
 		fmt.Println("打开Excel失败")
 	}
@@ -312,9 +314,9 @@ func biliStr2Json(jsonStr string) (biliBean BiliFollowersBean) {
 func GetData(idIndex int) []string {
 	//fmt.Println("开始进行获取Excel数据----->")
 
-	xlFile, err := xlsx.OpenFile("./id.xlsx")
+	xlFile, err := xlsx.OpenFile("/ids.xlsx")
 	if err != nil {
-		fmt.Println("打开Excel失败")
+		fmt.Println("打开Excel失败,",err)
 	}
 	var ids []string
 	for _, sheet := range xlFile.Sheets {
